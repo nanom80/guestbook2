@@ -24,11 +24,11 @@ public class GuestbookController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("GuestbookController");
+		System.out.println("★GuestbookController");
 		
 		String action = request.getParameter("action");
 		
-		System.out.println("action="+action);
+		System.out.println("★action="+action);
 		
 		if("list".equals(action)) {
 			System.out.println("★리스트");

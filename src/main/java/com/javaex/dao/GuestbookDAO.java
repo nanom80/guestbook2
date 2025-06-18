@@ -206,7 +206,7 @@ public class GuestbookDAO {
 			query += " 		  content, ";
 			query += " 		  reg_date ";
 			query += " from guestbook ";
-			query += " order by guestbook_id desc ";
+			query += " order by guestbook_id ";
 				
 			//바인딩
 			pstmt = conn.prepareStatement(query);

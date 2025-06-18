@@ -3,7 +3,8 @@
 <%@ page import="com.javaex.vo.GuestbookVO" %>
 
 <%
-	System.out.println("여기는 deleteForm.jsp");
+	System.out.println("◎deleteForm.jsp");
+
 	String gId = request.getParameter("gId");
 %>
 

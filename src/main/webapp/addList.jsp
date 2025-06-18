@@ -3,9 +3,13 @@
 <%@ page import="com.javaex.vo.GuestbookVO" %>
 
 <%
+	System.out.println("◎addList.jsp");
+	
 	List<GuestbookVO> guestbookList= (List<GuestbookVO>)request.getAttribute("gList");
-	System.out.println("여기는 addList.jsp");
-	System.out.println(guestbookList);
+	
+	for (GuestbookVO vo : guestbookList) {
+		System.out.println(vo.toString());
+	}
 
 %>
 
@@ -37,11 +41,10 @@
 	%>
 		<table border="1" width="540px">
 			<tr>
-				<td><%= guestbookList.get(i).getGuestbookId() %></td>
-				<td><%= guestbookList.get(i).getName() %></td>
-				<td><%= guestbookList.get(i).getRegDate() %></td>
-				
-				<td><a href="deleteForm.jsp?gId=<%=guestbookList.get(i).getGuestbookId()%>">삭제</a></td>
+				<td width="50"><%= guestbookList.get(i).getGuestbookId() %></td>
+				<td width="280"><%= guestbookList.get(i).getName() %></td>
+				<td width="160"><%= guestbookList.get(i).getRegDate() %></td>
+				<td width="50"><a href="deleteForm.jsp?gId=<%=guestbookList.get(i).getGuestbookId()%>">삭제</a></td>
 			</tr>
 			<tr>
 				<td colspan="4"><%= guestbookList.get(i).getContent() %></td>
