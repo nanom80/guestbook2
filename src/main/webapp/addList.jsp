@@ -10,7 +10,7 @@
 	for (GuestbookVO vo : guestbookList) {
 		System.out.println(vo.toString());
 	}
-
+	
 %>
 
 <!DOCTYPE html>
@@ -51,6 +51,15 @@
 			</tr>
 		</table>
 		<br>
+	<%
+	}
+	%>
+	<%-- 메시지 출력 --%>
+	<%
+    String message = (String) request.getAttribute("message");
+    if (message != null) {
+	%>
+	    <p style="color: blue;"><%= message %></strong></p>
 	<%
 	}
 	%>

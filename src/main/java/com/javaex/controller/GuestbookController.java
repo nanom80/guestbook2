@@ -96,16 +96,32 @@ public class GuestbookController extends HttpServlet {
 			GuestbookDAO guestbookDAO = new GuestbookDAO();
 			GuestbookVO guestbook = guestbookDAO.getGuestbookById(gId);
 			
+			String message;
+			
 			if(guestbook != null && guestbook.getPassword().equals(password)) {
 		        guestbookDAO.guestbookDelete(gId);
+		        message = "삭제 성공했습니다.";
 		        System.out.println("삭제 성공");
 		    } else {
+		    	message = "비밀번호가 맞지 않거나 해당 글이 존재하지 않습니다.";
 		        System.out.println("비밀번호가 맞지 않습니다.");
 		    }
 			
-			//리다이렉트
-			System.out.println("★리다이렉트");
-			response.sendRedirect("http://192.168.0.99:8080/guestbook2/pbc?action=list");
+			List<GuestbookVO> guestbookList = guestbookDAO.guestbookSelect();
+		    request.setAttribute("gList", guestbookList);
+		    request.setAttribute("message", message);
+		    
+			//리다이렉트 & 포워드
+			//System.out.println("★리다이렉트");
+			//response.sendRedirect("http://192.168.0.99:8080/guestbook2/pbc?action=list");
+			
+			//이렇게 하면 message는 사라진다, 왜냐하면 sendRedirect()는 새 request이기 때문이다
+			//그래서 사용자에게 삭제 성공/실패 메시지를 보여주고 싶다면 forward()를 사용해야 한다
+			
+			System.out.println("★포워드");
+			RequestDispatcher rd = request.getRequestDispatcher("/addList.jsp");
+		    rd.forward(request, response);
+		    
 		}
 		
 	}
